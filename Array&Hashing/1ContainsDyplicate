@@ -34,6 +34,15 @@ class Solution:
 T.C. - O(N)
 S.C - O(N)
 
+OPTIMAL SOLUTION 3 ------------------
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        return len(set(nums))< len(nums)
+T.C. - O(N)
+S.C - O(N)
+          
+
 
 
 
