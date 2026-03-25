@@ -22,5 +22,21 @@ T.C. - O(NLOGN)
 S.C - O(1) OR O(N) DEPENDING ON ALGO
 
 
+OPTIMAL SOLUTION 2 ------------------
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        seen = set()
+        for num in nums:
+            if num in seen:
+                return True
+            seen.add(num)
+        return False
+T.C. - O(N)
+S.C - O(N)
+
+
+
+
+
 
         
