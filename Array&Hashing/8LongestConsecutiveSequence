@@ -1,4 +1,4 @@
-Brute Force : - O(N^2), O(n)- set space
+Brute Force : - T.C. - O(N^2), S.C.- O(n)- set space
 Approach - I was confused with the length part, i had a solution which stores consecutive elements first and then the length.
 But this solution uses two variables res and streak that calculates the len very easily. Set helps in keeping the unique elements,
 and the while loop helps in finding the consecutive elements.
@@ -20,4 +20,19 @@ class Solution:
                 curr += 1
             res = max(res,streak)
         return res
+
+OPTIMAL (HASH SET)  - T.C.-O(N), SC. - O(N)
+
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        numSet = set(nums)
+        longest = 0
+
+        for num in numSet:
+            if (num - 1) not in numSet:
+                length = 1
+                while (num + length) in numSet:
+                    length += 1
+                longest = max(length, longest)
+        return longest
         
