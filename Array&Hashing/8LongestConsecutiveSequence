@@ -1,4 +1,12 @@
-Brute Force : - O(N^2), O(1)
+Brute Force : - O(N^2), O(n)- set space
+Approach - I was confused with the length part, i had a solution which stores consecutive elements first and then the length.
+But this solution uses two variables res and streak that calculates the len very easily. Set helps in keeping the unique elements,
+and the while loop helps in finding the consecutive elements.
+The program does the following -
+1) Move number by number in the list given
+2) Streak set to one for every number at first and curr updated to num
+3)While checks for every consecutive number that exists for the number already in list, that too in second iteration
+4) At last res max is what adds the length of the consecutive sequence
 
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
