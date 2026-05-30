@@ -1,0 +1,11 @@
+Brute Force : T.C. - O(N), S.C. - O(N) 
+My approach : I couldn't remember build in functions like isalnum(), reverse string function like (::-1) that made
+me close to the answer but not to the code
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        newStr = ''
+        for c in s:
+            if c.isalnum():
+                newStr += c.lower()
+        return newStr == newStr[::-1]        
