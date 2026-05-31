@@ -14,22 +14,21 @@ class Solution:
 
 OPTIMAL APPROACH : T.C. - O(N^2), S.C. - O(1) + sorting space (O(n^2))
 
-class Solution:
+lass Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         res = []
         nums.sort()
 
-        for i, a in enumerate(nums):
-            if a > 0:
-                break
-            if i > 0 and a == nums[i-1]:
+        for i,a in enumerate(nums):
+            if a > 0:               # this value is +ve, rest will also be +ve 
+                break               # and +ve value can't give zero
+            if i > 0 and a == nums[i-1]:        #for duplicates (nums[i-1]) part
                 continue
-            
             l, r = i+1, len(nums)-1
             while l<r:
                 threeSum = a + nums[l] + nums[r]
                 if threeSum > 0:
-                    r -= 1 
+                    r -= 1
                 elif threeSum < 0:
                     l += 1
                 else:
@@ -39,4 +38,3 @@ class Solution:
                     while nums[l] == nums[l-1] and l<r:
                         l += 1
         return res
-
