@@ -1,0 +1,16 @@
+Brute Force: T.C. - O(N*M) , S.C. - O(M)
+Approach: I think every sliding window question involves comapring the adjacent element and then maximizing the result 
+at the end.
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        res = 0
+        for i in range(len(s)):
+            charSet = set()
+            for j in range(i, len(s)):
+                if s[j] in charSet:
+                    break
+                charSet.add(s[j])
+            res = max(res,len(charSet))
+        return res
+        
