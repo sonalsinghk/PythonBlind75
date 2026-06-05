@@ -1,0 +1,40 @@
+Brute Force: T.C. - O(N^2 * M) , S.C. - O(M) 
+
+Approach : Two hashmaps Have(string s) and Need (string t) is there, its the occurence of the charachters in both the strings,
+the game is HAVE = NEED , HAVE(CHAR) >= NEED(CHAR)
+
+Imp points : In very sliding window question, the only approach is to calculate the occurence of the charachter, even if your
+thinking denies it but go in that direction, the window length (j-i+1) is very imp + count.get(char, 0) very imp.
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if t == "":
+            return ""
+
+        countT = {}
+        for c in t:
+            countT[c] = 1 + countT.get(c,0)
+
+        res, resLen = [-1,-1], float("infinity")
+
+        for i in range(len(s)):
+            countS = {}
+
+            for j in range(i, len(s)):
+
+                countS[s[j]] = 1 + countS.get(s[j],0)
+
+                flag = True
+
+                for c in countT:
+                    if countT[c] > countS.get(c,0):
+                        flag = False
+                        break
+                
+                if flag and (j-i+1) < resLen:
+                    res = [i,j]
+                    resLen = (j-i+1)
+
+        l,r = res
+        return s[l:r+1] if resLen != float("infinity") else ""
+        
