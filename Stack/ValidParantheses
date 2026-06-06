@@ -1,0 +1,11 @@
+Brute Force: T.C. - O(N^2) - replace takes O(n) , S.C. - O(N) - string is mutuable, new string created (for replacement)
+Approach : Everytime you see (), you remove it from the string, if the whole string is empty at the end, solution
+is true
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        while '()' in s or '[]' in s or '{}' in s:
+            s = s.replace('()','')
+            s = s.replace('[]','')
+            s = s.replace('{}','')
+        return s == ''
