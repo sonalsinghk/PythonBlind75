@@ -9,3 +9,24 @@ class Solution:
             s = s.replace('[]','')
             s = s.replace('{}','')
         return s == ''
+
+
+Optimal : T.C. - O(N) , S.C. - O(N)
+Approach: Put the close brackets in dic, till any of the close brackets are found, we append the rest in the stack
+when we find the close bracket in the string and the value pair of dictionary is checked, then pop if found.
+That way, equal no of brackets are cut and order is also followed.
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+         stack = []
+         openToClose = {")" : "(", "]" : "[" , "}" : "{"}
+
+         for c in s:
+            if c in openToClose:
+                if stack and stack[-1] == openToClose[c]:
+                    stack.pop()
+                else:
+                    return False
+            else:
+                stack.append(c)
+         return True if not stack else False
