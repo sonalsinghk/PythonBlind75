@@ -1,0 +1,10 @@
+Brute Force: T.C. - O(N), S.C. - O(1)
+I did this myself but the solution needs o(log n) solution
+
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        res = float("infinity")
+        for i in range(len(nums)):
+            res = min(res, nums[i])
+        return res
+        
