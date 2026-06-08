@@ -1,0 +1,12 @@
+Brute Force: T.C. - O(LOGN), S.C. - 0(1)
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        ans = -1
+        for i in range(len(nums)):
+            if nums[i] == target:
+                ans = i
+                break
+        return ans             
+
+        
