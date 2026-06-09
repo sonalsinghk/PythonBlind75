@@ -13,3 +13,18 @@ class Solution:
             prev = curr
             curr = nxt 
         return prev       
+
+Recursively : T.C. - O(N), S.C. - O(N)
+Approach : The recursively call is except the head, so base case is for the head
+
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head:
+            return None
+         
+        newHead = head
+        if head.next:
+            newHead = self.reverseList(head.next)
+            head.next.next = head
+        head.next = None
+        return newHead
