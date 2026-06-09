@@ -1,0 +1,15 @@
+Iteratively - T.C. - O(N), S.C. - O(1)
+Approach : start from null, make prev as null, then store the value of head.next in a variable named nxt so that we don't
+lose it, update curr with prev and move forward with curr continued to curr.next. Prev is returned cause prev is now at the 
+head of the linkedlist.
+
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        prev, curr = None, head
+
+        while curr:
+            nxt = curr.next
+            curr.next = prev
+            prev = curr
+            curr = nxt 
+        return prev       
