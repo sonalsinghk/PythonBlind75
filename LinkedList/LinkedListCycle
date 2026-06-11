@@ -1,0 +1,16 @@
+Solution: (HASH SET) : T.C. - O(N), S.C. - O(N)
+
+Approach: The linkedlist will repeat values for sure, we have to catch the value that repaeats first so
+used set(). As soon as the first element repeats, it returns True
+
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        seen = set()
+        curr = head
+
+        while curr:
+            if curr in seen:
+                return True
+            seen.add(curr)
+            curr = curr.next
+        return False
