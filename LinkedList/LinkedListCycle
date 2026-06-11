@@ -1,4 +1,4 @@
-Solution: (HASH SET) : T.C. - O(N), S.C. - O(N)
+Solution 1: (HASH SET) : T.C. - O(N), S.C. - O(N)
 
 Approach: The linkedlist will repeat values for sure, we have to catch the value that repaeats first so
 used set(). As soon as the first element repeats, it returns True
@@ -14,3 +14,19 @@ class Solution:
             seen.add(curr)
             curr = curr.next
         return False
+
+Solution 2: (SLOW AND FAST POINTER) - T.C. - O(N), S.C. - O(1)
+Approach: base case fast and fast.next is used for when there is no cycle. For ex - LL[1], fast takes 1 and fast.next takes null - hence
+not executed. Main point: the slow and fast pointer will be equal once and that makes the cycle.
+
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow, fast = head, head
+
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
+        return False
+
