@@ -23,3 +23,36 @@ class Solution:
             nodes[j].next = nodes[i]
             j -= 1
         nodes[i].next = None
+
+Optimal Sol^n - T.C. - O(N), S.C. - O(1)
+
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        #take fast to the end of LL and second to last of the first LL
+        #first ll - [1,2], second LL [3,4]
+
+        slow, fast = head, head.next
+
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        #reverse
+        second = slow.next #beg of second ll
+        prev = slow.next = None #intially
+
+        while second:
+            tmp = second.next
+            second.next = prev
+            prev = second
+            second = tmp
+
+        #merge
+
+        first, second = head, prev
+
+        while second:     #till second ll exists
+            tmp1, tmp2 = first.next, second.next
+            first.next = second
+            second.next = tmp1
+            first, second = tmp1, tmp2
