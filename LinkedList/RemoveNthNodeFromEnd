@@ -18,3 +18,29 @@ class Solution:
         nodes[removeIndex - 1].next = nodes[removeIndex].next
 
         return head
+
+Optimal Iterative Solution : T.C. - O(N), S.C. - O(1)
+Approach : The array was taking extra space in the above solution, and we needed only N (len(arr)), so took that only.
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        N = 0
+        curr = head
+
+        while curr:
+            N += 1
+            curr = curr.next
+
+        removeIndex = N - n
+
+        if removeIndex == 0:
+            return head.next
+
+        curr = head
+
+        for i in range(N - 1):
+            if (i+1) == removeIndex:
+                curr.next = curr.next.next
+                break
+            curr = curr.next
+        return head
+                
