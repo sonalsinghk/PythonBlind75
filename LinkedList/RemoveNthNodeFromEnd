@@ -1,0 +1,20 @@
+Brute Force : T.C. - O(N), S.C. - O(N)
+Approach : Plus minus and making use of array in terms of indexing helps. Here removeIndex helps in answering.
+
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        nodes = []
+        curr = head
+
+        while curr:
+            nodes.append(curr)
+            curr = curr.next
+
+        removeIndex = len(nodes) - n
+
+        if removeIndex == 0:
+            return head.next
+
+        nodes[removeIndex - 1].next = nodes[removeIndex].next
+
+        return head
