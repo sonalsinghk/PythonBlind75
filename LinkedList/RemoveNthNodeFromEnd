@@ -43,4 +43,26 @@ class Solution:
                 break
             curr = curr.next
         return head
-                
+
+Optimal (Two Pointer) = T.C. - O(N), S.C. - O(1)
+
+Approach: A dummy pointer is set from 0. The right pointer is n positions ahead starting from head.
+One left pointer and right pointer, left settle at the (n+1) that has to be removed, right is at null.
+As head reaches null, left is at pos that has to be deleted.
+
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        left = dummy
+        right = head
+
+        while n > 0:
+            right = right.next
+            n -= 1
+
+        while right:
+            left = left.next
+            right = right.next
+
+        left.next = left.next.next
+        return dummy.next
