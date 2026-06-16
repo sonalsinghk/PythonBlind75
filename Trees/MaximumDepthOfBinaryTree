@@ -27,4 +27,27 @@ class Solution:
                 stack.append([node.left,depth+1])
                 stack.append([node.right,depth+1])
         return res
-            
+
+
+3. Breadth First Search: T.C. - O(N), S.C. - O(N)
+
+Approach: Here while and for loop both are used because we are traversing level by level so for each level the
+loop has to run for only the existing nodes at that level and then update the depth. While is for no of nodes over all
+and for loop is from no of nodes in that level
+
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        q = deque()
+        if root:
+            q.append(root)
+        
+        level = 0
+        while q:
+            for i in range(len(q)):
+                node = q.popleft()
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+            level += 1
+        return level
