@@ -8,3 +8,23 @@ class Solution:
             return 0
         return 1 + max(self.maxDepth(root.left),self.maxDepth(root.right))
         
+2. Iterative DFS: T.C. - O(N), S.C. - O(N)
+
+Approach: Stack stores two elements in a list within the same box [[root, depth]], depth is stored to 1, 
+but result is stored to zero for empty tree. I missed (if node) its for empty tree, or if no children exists.
+Syntax can cause problems, [[]], ([])
+
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        stack = [[root,1]]
+        res = 0
+
+        while stack:
+            node, depth = stack.pop()
+
+            if node:
+                res = max(res,depth)
+                stack.append([node.left,depth+1])
+                stack.append([node.right,depth+1])
+        return res
+            
