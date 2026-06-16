@@ -43,7 +43,7 @@ class Solution:
         
         level = 0
         while q:
-            for i in range(len(q)):
+            for i in range(len(q)):  #node at each level, like for level 2 : two times for loop will run for 9,20 add its left and right node value and then update level by +1
                 node = q.popleft()
                 if node.left:
                     q.append(node.left)
