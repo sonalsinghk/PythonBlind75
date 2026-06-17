@@ -1,0 +1,14 @@
+1. Recursive DFS: T.C. - O(N), S.C. - O(N)
+
+Approach: If we have reached null for both trees, return true. And if the two nodes of 
+different trees are equal then check for their children and when there children (both left
+and right) then return true.
+
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if not p and not q:
+            return True
+        if p and q and p.val == q.val:
+            return self.isSameTree(p.left,q.left) and self.isSameTree(p.right,q.right)
+        else:
+            return False
