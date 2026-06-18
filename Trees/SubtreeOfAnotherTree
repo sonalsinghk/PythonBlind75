@@ -27,4 +27,44 @@ class Solution:
             and self.isSame(root.right, subRoot.right))
         return False
     
+2. Seralization and Pattern Matchmaking : T.C. - O(M+N), S.C. - O(M+N)
+
+Approach: Convert the tree and subtree combination into a string, then make a list z with all zeros with length of the combined
+string. Check for 0 which is every z[i] and i increasing. You will reach a pointer where the tree and subtree values are same, for
+that z[i] the occurence keeps on increasing, then at last you check for the subtree length and the value of z[i] being same, if 
+same then true otherwise false.
+
+class Solution:
+    def serialize(self,root:Optional[TreeNode]) -> str:
+        if root == None:
+            return "$#"
+        return ("$" + str(root.val) + self.serialize(root.left) + self.serialize(root.right) )
     
+    def z_function(self, s: str) -> list:
+
+        z = [0] * len(s)
+        l,r, n = 0, 0, len(s)
+
+        for i in range(1,len(s)):
+            if i <= r:
+                z[i] = min( r - i +1, z[i-l])
+            while i + z[i] < n and s[z[i]] == s[z[i] + i]:
+                z[i] += 1
+            if i + z[i] - 1 < r:
+                l, r = i, i + z[i] - 1
+        return z
+
+    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+        
+        serialized_root = self.serialize(root)
+        serialized_subroot = self.serialize(subRoot)
+        combined = serialized_subroot + "|" + serialized_root
+
+        z_values = self.z_function(combined)
+        sub_len = len(serialized_subroot)
+
+        for i in range(sub_len + 1, len(combined)):
+            if z_values[i] == sub_len:
+                return True
+        return False
+
