@@ -20,3 +20,22 @@ class Solution:
        else:
         return root
 
+Iterative : T.C. - O(H), S.C. - O(1)
+
+Approach: In this problem we check if both p and q is more than root value then we move 
+towards right and if both p and q are less than root then we move towards the left node,
+we both of these cases outpass then we return the curr node.
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+
+       curr = root
+
+       while curr:
+
+        if p.val > curr.val and q.val > curr.val:
+            curr = curr.right
+        elif p.val < curr.val and q.val < curr.val:
+            curr = curr.left
+        else:
+            return curr
