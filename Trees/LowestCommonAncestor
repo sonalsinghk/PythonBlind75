@@ -1,0 +1,22 @@
+Recursion : T.C. - O(H), S.C. - O(H)
+
+Approach: In bst problems, the left side node is smaller and right side node is bigger so when dealing with 
+bst problems, always keep in mind. In this problem, if the max of p and q is less than root node than
+the function should move towards left and if the minimum of p and q is more than root than it should 
+proceed towards right and both the cases are out then the root is the answer.
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+
+       if not root or not p or not q:
+        return None
+
+       if (max(p.val,q.val) < root.val):
+        return self.lowestCommonAncestor(root.left,p,q)
+
+       elif(min(p.val,q.val) > root.val):
+        return self.lowestCommonAncestor(root.right,p,q)
+
+       else:
+        return root
+
