@@ -1,0 +1,22 @@
+1. Depth First Search : T.C. - O(N), S.C. - O(N)
+
+Approach: The output is supposed to be a list[list], i am very confused or little unconfident when it comes
+to list of lists. In this problem, we make a list, then when the len(res) is equal to the depth then we 
+add a list to the existing list then we add to the depth, the specific node value.
+
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        res = []
+    
+        def dfs(node,depth):
+            if not node:
+                return None
+            if len(res) == depth:
+                res.append([])       #adding empty list to existing list
+            
+            res[depth].append(node.val)
+            dfs(node.left,depth + 1)
+            dfs(node.right,depth + 1)
+        dfs(root,0)
+        return res
+        
