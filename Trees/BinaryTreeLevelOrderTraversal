@@ -19,4 +19,32 @@ class Solution:
             dfs(node.right,depth + 1)
         dfs(root,0)
         return res
+
+2. Breadth First Search: T.C. - O(N), S.C. - O(N)
+
+Inorder to solve for breadth first search, we need to use a queue. In this solution only thing to keep in mind 
+is level is created every time , we find that there is still values in q, i runs as many times as values in the
+queue at that particular level. If node exits, we add it to the level and appends q with node's left and right values,
+then if level exist, we add it to the res.
+
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        res = []
+
+        q = collections.deque()
+        q.append(root)
+
+        while q:
+            lenq = len(q)
+            level = []
+            for i in range(lenq):
+                node = q.popleft()
+                if node:
+                    level.append(node.val)
+                    q.append(node.left)
+                    q.append(node.right)
+            if level:
+                res.append(level)
+        return res
+
         
