@@ -1,0 +1,31 @@
+1. Depth First Search: T.C. - O(N), S.C. - O(N)
+
+Approach: I have used a function called valid in which parameters used is node, left and right.
+The catch is valid passes (node.left, left, node.val), so when checked for if condition - 
+node = 1
+left = -1
+right = 2
+if ( -1 < 1 < 2) which is true
+similarly for right node but valid function call is different
+node = 3
+left = 2
+right = 100
+if ( 2 < 3 < 100)
+We were limited in the already given function so created our own.
+The main function call, left is set to - infinity (the lowest value)
+and right to + infinity (the highest value)
+
+
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        
+        def isValid(node,left,right):
+
+            if not node:
+                return True
+            if not (left < node.val < right):
+                return False
+            
+            return isValid(node.left,left,node.val) and isValid(node.right,node.val,right)
+
+        return isValid(root,float("-inf"),float("inf"))
