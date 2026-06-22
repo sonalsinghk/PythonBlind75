@@ -1,0 +1,19 @@
+1. Brute Force: T.C. - O(NLOGN), S.C.- O(N) - Array used
+
+Approach: Array is used to store the tree nodes then we used sorting and returned k-1 arr 
+element
+
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        arr = []
+
+        def dfs(node):
+            if not node:
+                return
+            arr.append(node.val)
+            dfs(node.left)
+            dfs(node.right)
+        
+        dfs(root)
+        arr.sort()
+        return arr[k-1]
