@@ -62,4 +62,22 @@ class Solution:
         
         dfs(root)
         return res
-            
+
+4. Iterative DFS : T.C. - O(N), S.C. - O(N)
+
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        
+        stack = []
+        curr = root
+
+        while curr or root:
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+            curr = stack.pop()
+            k -=1 
+            if k == 0 :
+                return curr.val
+            curr = curr.right
+
