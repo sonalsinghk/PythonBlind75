@@ -41,3 +41,30 @@ class Solution:
 
         path = root.val + max(left,right)
         return max(0,path)
+
+2. DFS Optimal - T.C. - O(N), S.C. - O(N)
+
+Approach: Here they used res[0] list so that we don't need to add nonlocal but using an int works faster
+
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+
+        res = -float('inf') / res = [root.val]
+
+        def dfs(root):
+            nonlocal res
+            if not root:
+                return 0
+
+            leftMax = dfs(root.left)
+            rightMax = dfs(root.right)
+            leftMax = max(leftMax,0)
+            rightMax = max(rightMax,0)
+
+            res = max(res, root.val + leftMax + rightMax) / res[0]
+            return root.val + max(leftMax,rightMax)
+        dfs(root)
+        return res
+
+        
+        
