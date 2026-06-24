@@ -1,0 +1,43 @@
+1. Depth First Search (Brute Force) : T.C. - O(N^2), S.C. - O(N)
+
+Approach: Apart from dfs function, we have created a getMax function that will return root.val + max(left node, right node).
+That will help how?
+For every node, we will now the node with the max value of left and right side (with max values). For ex - 
+        -10
+       /   \
+     9     20
+          /   \
+         15    7
+In this case, one possible maxPath solution is -10->20->15 which gives 34
+I was confused with how to call a recursive call for tree nodes, so always use dfs internal function.
+Here every node is visited twice ~ O(N^2)
+
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        
+        res = -float('inf')
+
+        def dfs(root):
+
+            nonlocal res
+
+            if not root:
+                return None
+            left = self.getMax(root.left)
+            right = self.getMax(root.right)
+            res = max(res, root.val + left + right)
+            dfs(root.left)
+            dfs(root.right)
+        dfs(root)
+        return res
+
+    def getMax(self, root: Optional[TreeNode]) -> int:
+        
+        if not root:
+            return 0
+
+        left = self.getMax(root.left)
+        right = self.getMax(root.right)
+
+        path = root.val + max(left,right)
+        return max(0,path)
