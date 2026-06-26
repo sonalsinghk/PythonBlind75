@@ -1,0 +1,20 @@
+1. Sorting : T.C. - O(M) + O(M*NLOGN) , S.C. - O(N) - storing list
+
+Approach : Median is arr[size//2] + arr[size//2 -1] /2, this solution requires sort function
+
+class MedianFinder:
+
+    def __init__(self):
+        self.res = []
+        
+
+    def addNum(self, num: int) -> None:
+        self.res.append(num)
+
+    def findMedian(self) -> float:
+        self.res.sort()
+        size = len(self.res)
+        
+        return (self.res[size//2] if (size & 1) else 
+        (self.res[size//2 - 1] + self.res[size//2]) /2)
+        
