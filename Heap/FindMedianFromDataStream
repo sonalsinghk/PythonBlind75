@@ -46,5 +46,28 @@ class MedianFinder:
         elif len(self.large) > len(self.small):
             return self.large[0]
         return (-1 * self.small[0] + self.large[0]) / 2.0
-        
-        
+
+3. Heap Short Solution : T.C. - O(M*LOGN) , S.C. - O(N)
+
+Approach: From above solution, i noticed that when len(minheap) == len(maxheap) major changes are done then and when opposite.
+Here some new functions like heapq.heappush_max() is used, its for implementing max_heap, it stores the largest value of the 
+lot at heap[0].
+
+
+class MedianFinder:
+
+    def __init__(self):
+        self.minHeap = []
+        self.maxHeap = []
+
+    def addNum(self, num: int) -> None:
+        if len(self.minHeap) == len(self.maxHeap):
+            heapq.heappush_max(self.maxHeap, heappushpop(self.minHeap, num))
+        else:
+            heapq.heappush(self.minHeap, heappushpop_max(self.maxHeap, num))
+
+    def findMedian(self) -> float:
+        if len(self.minHeap) == len(self.maxHeap):
+            return (self.minHeap[0] + self.maxHeap[0])/2
+        else:
+            return self.maxHeap[0]
