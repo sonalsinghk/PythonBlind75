@@ -1,3 +1,5 @@
+1. BackTracking : T.C. - O(2 t/m) , S.C. - O(t/m) - t being the target and m being the minum value in candidates
+
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         res = []
@@ -14,5 +16,27 @@ class Solution:
             dfs(i,curr,total + candidates[i])
             curr.pop()
             dfs(i+1, curr, total)
+        dfs(0,[],0)
+        return res
+
+2. Backtracking Optimal : T.C. - O(2 t/m) , S.C. - O(t/m)
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        res = []
+        candidates.sort()
+
+        def dfs(i,cur,total):
+            if target == total:
+                res.append(cur.copy())
+                return
+            
+            for j in range(i,len(candidates)):
+                if total + candidates[j] > target:
+                    return
+                cur.append(candidates[j])
+                dfs(j,cur,total + candidates[j])
+                cur.pop()
+
         dfs(0,[],0)
         return res
