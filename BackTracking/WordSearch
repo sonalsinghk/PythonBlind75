@@ -1,5 +1,5 @@
 1. BackTracking Set : T.C. - O(M*4^N) because each letter will have 4 options (4 directions) to 
-go to. No of rows is m * 4 direction of the power column , S.C. - O(N)  
+go to. m - no of cells. n - length of word , S.C. - O(N)  
 
 
 class Solution:
