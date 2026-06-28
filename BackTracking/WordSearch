@@ -1,6 +1,10 @@
 1. BackTracking Set : T.C. - O(M*4^N) because each letter will have 4 options (4 directions) to 
 go to. m - no of cells. n - length of word , S.C. - O(N)  
 
+Approach : dfs(0,0,0) -> when word[i] matches board[r][c], (r,c) is added to path then
+dfs(0+1,0,1) is called that is how i is increased everytime. When i reaches the length
+of word, it return true.
+The double for loop is to send (r,c,0) together i think, all the work is done by backtracking.
 
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
