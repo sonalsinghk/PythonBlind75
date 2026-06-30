@@ -1,5 +1,6 @@
 1. DFS - T.C. - O(N) for both functions, S.C. - O(T+N)
 
+Approach: Search - the only thing was to think about . thing, that helps with the len of the word passed.
 
 class TrieNode:
     def __init__(self):
