@@ -1,0 +1,28 @@
+1. DEPTH FIRST SEARCH: T.C. - O(V+E), S.C. - O(V)
+
+Approach: Through hashmap, we make a copy of nodes. if the node exists in the hasmap then return the copied node. For the for 
+loop, copy's neighbor is appended, when the node is returned automatically it connects with the respective node.
+
+Explanation of the input:
+Node 1 : val = 1, neighbors = [2,4]
+Node 2 : val = 2, neighbors = [1,3]
+Node 3 : val = 3, neighbors = [2,4]
+Node 4  : val = 4, neighbors = [1,3]
+
+from typing import Optional
+class Solution:
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        oldToNew = {}
+
+        def dfs(node):
+            if node in oldToNew:
+                return oldToNew[node]
+
+            copy = Node(node.val)
+            oldToNew[node] = copy
+
+            for nei in node.neighbors:
+                copy.neighbors.append(dfs(nei))
+            return copy
+        
+        return dfs(node) if node else None
