@@ -1,5 +1,8 @@
 1. Brute Force: T.C. - O(N^2), S.C. - O(N)
 
+Approach: I was not able to recall the set operation, but brute force solution came into my mind. The only catch here is 
+how to check for the 3x3 grid, memorize the formula for row and col for each square, row = (square//3) *3 + i, col = (square%3) *3 + j
+
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         for row in range(9):
