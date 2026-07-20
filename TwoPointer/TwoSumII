@@ -14,3 +14,16 @@ class Solution:
                 else:
                     r = mid - 1
         return []
+
+2. HashMap : T.C. - O(N), S.C. - 0(N)
+
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        mp = defaultdict(int)
+
+        for i in range(len(numbers)):
+            tmp = target - numbers[i]
+            if mp[tmp]:
+                return [mp[tmp],i+1]
+            mp[numbers[i]] = i+1
+        return []
