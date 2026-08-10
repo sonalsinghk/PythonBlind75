@@ -1,0 +1,22 @@
+1. DP (BOTTOM UP) : T.C. - O(N), S.C. - O(N)
+
+APPROACH: calculating max of (dfs(1) + nums[0] + dfs(2)) that means comparing 1 with other elements but comparing max with 
+(nums[0] + DFS(i+2) thats after leaving one block in between.
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+
+        memo = [-1] * len(nums)
+
+        def dfs(i):
+            if i >= len(nums):
+                return 0
+            if memo[i] != -1:
+                return memo[i]
+            memo[i] = max(dfs(i+1), nums[i] + dfs(i+2))
+            return memo[i]
+
+        return dfs(0)
+                
+
+        
