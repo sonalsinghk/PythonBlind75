@@ -37,6 +37,19 @@ class Solution:
 
         return dp[-1]         #dp[n-1]
 
+3. DP (SPACE OPTIMISED) : T.C. - O(N), S.C. - O(1)
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+
+        ROB1, ROB2 = 0,0
+
+        for num in nums:
+            temp = max(num+ROB1 , ROB2)
+            ROB1 = ROB2
+            ROB2 = temp
+        
+        return ROB2
+        
 
         
         
