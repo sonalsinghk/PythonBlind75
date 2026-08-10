@@ -1,4 +1,4 @@
-1. DP (BOTTOM UP) : T.C. - O(N), S.C. - O(N)
+1. DP (TOP DOWN) : T.C. - O(N), S.C. - O(N)
 
 APPROACH: calculating max of (dfs(1) + nums[0] + dfs(2)) that means comparing 1 with other elements but comparing max with 
 (nums[0] + DFS(i+2) thats after leaving one block in between.
