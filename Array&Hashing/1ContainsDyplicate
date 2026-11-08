@@ -41,8 +41,19 @@ class Solution:
         return len(set(nums))< len(nums)
 T.C. - O(N)
 S.C - O(N)
-          
 
+OPTIMAL SOLUTION 4 ---------------------
+
+class Solution:
+    def hasDuplicate(self, nums: List[int]) -> bool:
+        new = set(nums)
+
+        if len(new) != len(nums):
+            return True
+        else:
+            return False
+T.C. - O(N)
+S.C. - O(N)
 
 
 
