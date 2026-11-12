@@ -13,3 +13,28 @@ for st,cnt in d.items():
     newS += st + str(cnt)
     
 print(newS)
+
+
+#q2
+write me code for - input is a text and k a positive integer. 
+you have to sort the text dictionary wise and the sorted list should be less than equal to k,
+output should be [(this,1),(that,2)]
+
+
+text = "this is that this that that"
+k = 2
+
+words = text.split()
+d = {}
+
+# Count frequency
+for word in words:
+    d[word] = d.get(word, 0) + 1
+
+# Sort alphabetically
+sorted_words = sorted(d.items())
+
+# Take at most k words
+result = sorted_words[:k]
+
+print(result)
