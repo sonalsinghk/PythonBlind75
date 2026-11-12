@@ -1,0 +1,15 @@
+#q1
+# input - aaabccdddd
+#output - a3b1c2d4
+
+
+s = "aaabccdddd"
+d = {}
+newS = ""
+for c in s:
+  d[c] = 1+ d.get(c,0)
+
+for st,cnt in d.items():
+    newS += st + str(cnt)
+    
+print(newS)
